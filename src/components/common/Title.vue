@@ -1,9 +1,12 @@
 <script>
-export default {
+import { defineComponent, computed } from 'vue'
+export default defineComponent({
     props: {
 
         //--- Template
-        tag: {type: String, default: 'h3'},
+        h1: Boolean,
+        h2: Boolean,
+        h3: Boolean,
         label: String,
 
         //--- Alignment
@@ -17,8 +20,20 @@ export default {
         //--- Colors
         brand: Boolean,
         contrast: Boolean,
+    },
+
+    setup(props){
+
+
+        const tag = computed(() =>  
+            props.h1 ? 'h1' :
+            props.h2 ? 'h2' :
+            props.h3 ? 'h3' : 'h3'
+        )
+
+        return { tag }
     }
-}
+})
 </script>
 
 <template>
@@ -31,7 +46,7 @@ export default {
 .title {
     
     /* --- Defaults */
-    @apply md:text-3xl text-2xl font-bold;
+    @apply md:text-3xl text-2xl max-w-3xl font-bold;
     &>strong{@apply md:text-4xl text-3xl font-bold}
 
     /* --- Sizes */
