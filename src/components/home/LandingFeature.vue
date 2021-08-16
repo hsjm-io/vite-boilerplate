@@ -11,8 +11,8 @@ export default defineComponent({
 
 <template>
 <div class="text-center">
-    <Icon class="mb-6" display brand :name="icon"></Icon>
+    <Icon class="mb-6" display brand :name="icon"/>
     <Title class="mb-1" small>{{label}}</Title>
-    <p class="max-w-xs text-lg mx-auto opacity-75"><slot/></p>
+    <Text class="!max-w-xs" secondary center><slot/></Text>
 </div>
 </template>
