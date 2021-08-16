@@ -2,47 +2,76 @@
 //--- Import dependencies.
 import { defineConfig } from 'vite'
 import { execSync } from 'child_process'
+import consola from 'consola'
 
 //--- Import plugins.
-import { ViteAliases } from 'vite-aliases'
 import ViteVue from '@vitejs/plugin-vue'
-import ViteSSR from 'vite-ssr/plugin'
-import ViteWindiCSS from 'vite-plugin-windicss'
+import ViteLegacy from '@vitejs/plugin-legacy'
 import ViteComponents from 'vite-plugin-components'
-import ViteFonts from 'vite-plugin-fonts'
 
 //--- Compute server parameters.
 const gpPortUrl = port => execSync(`gp url ${port}`).toString().replace('https:\/\/', '')
-const host = process.env.HOST ?? '0.0.0.0'
+const host = process.env.HOST ?? '127.0.0.1'
 const port = process.env.PORT ?? 3000
 const url = process.env.GITPOD_WORKSPACE_ID ? gpPortUrl(port) : `${host}:${port}`
+
+const isDev = process.env.NODE_ENV !== 'production'
 
 //--- Define and export Vite config.
 export default defineConfig({
 
     server: {
-        host, port, url,
+        host: host,
+        port: port,
+        url: url,
+
         hmr: {
-            port: 443,
+            port: 24678,
+            clientPort: 443,
             protocol: 'wss',
-            host: url.replace('https://','wss://'),
+            host: gpPortUrl(24678),
         },
     },
 
     optimizeDeps: {
-        include: [ 'vue', 'vue-router', '@vueuse/core' ],
+        include: [ 'vue', 'vue-router', '@vueuse/core', 'lodash' ],
         exclude: [ 'vue-demi' ],
     },
 
+    build: {
+        minify: true,
+        manifest: true,
+        ssrManifest: true,
+        target: 'esnext',
+        sourcemap: 'hidden'
+    },
+    
+    logger: {
+        info: consola.info,
+        warn: consola.warn,
+        error: consola.error,
+    },
+
+    css: {
+        modules: {
+            scopeBehaviour: 'local',
+            generateScopedName: '[hash:base64]'
+        },
+
+        postcss: {
+            plugins: [
+                require('tailwindcss')(),
+                require('postcss-nested-ancestors'),
+                require('postcss-nested'),
+                require('postcss-font-magician')({ foundries: 'google' }),
+                require('postcss-preset-env'),
+            ]
+        }
+    },
+
 	plugins: [
-        ViteAliases(),
-		ViteWindiCSS(),
 		ViteVue(),
 		ViteComponents(),
-        ViteFonts({google: {families: [{
-            name: 'Poppins',
-            styles: 'wght@200;400;800'
-        }]}}),
-        ViteSSR(),
+        ViteLegacy(),
 	]
 })
