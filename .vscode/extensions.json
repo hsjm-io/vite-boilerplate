@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "octref.vetur",
+        "csstools.postcss",
+        "bradlc.vscode-tailwindcss"
+    ]
+}

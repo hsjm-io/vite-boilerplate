@@ -1,0 +1,15 @@
+tasks:
+  - init: yarn install
+    command: yarn dev
+
+ports:
+  - port: 24678
+    visibility: public
+  - port: 3000
+    visibility: public
+
+vscode:
+  extensions:
+    - octref.vetur
+    - csstools.postcss
+    - bradlc.vscode-tailwindcss
