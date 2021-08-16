@@ -12,33 +12,27 @@
     <!-- Hero -->
     <Content center transparent>
 
-            <Title display center class="mb-24">The <strong>standard</strong> Lorem Ipsum passage, used <strong>since</strong> 1500.</Title>
+        <!-- Title and text -->
+        <Title h2 display center class="mb-24">The <strong>standard</strong> Lorem Ipsum passage, used <strong>since</strong> 1500.</Title>
+        <Text display center class="mb-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</Text>
 
-            <!-- Hero text -->
-            <p class="text-4xl mx-auto max-w-4xl font-bold mb-24">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
-            </p>
-
-            <!-- Hero action. -->
-            <div class=" items-center inline-flex rounded-2xl bg-base-500 p-4 shadow-xl space-x-4">
-                <Icon class="text-brand-500 ml-3 text-2xl" name="search"/>
-                <input placeholder="Search for your content..." type="text" class="w-80 transition-all outline-none rounded-xl focus:bg-base-600 bg-base-500 text-on-base-500 h-12 px-4"/>
-                <button class="shadow-lg px-4 self-stretch bg-gradient-to-r from-brand-400  to-brand-600 rounded-xl text-on-brand-500 font-bold transform hover:-translate-y-0.5 transition-transform">Search</button>
-            </div>
-        
+        <!-- Action. -->
+        <div class=" items-stretch inline-flex rounded-2xl bg-base-500 p-4 shadow-xl space-x-4 max-w-2xl w-full">
+            <Icon right brand name="search"/>
+            <input placeholder="Search for your content..." type="text" class="w-full transition-all outline-none rounded-xl focus:bg-base-600 bg-base-500 text-on-base-500 h-12 px-4"/>
+            <Button brand square label="Search" icon="search"/>
+        </div>
     </Content>
     
     <!-- Features -->
-    <Divider/>
-    <Content class="text-center">
+    <Divider tall/>
+    <Content class="-mt-16">
 
         <!-- Title and text -->
-        <Title class="mb-6" center brand display>Features</Title>
+        <Title h3 class="mb-6" center brand display>Features</Title>
+        <Text large center class="mb-24">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</Text>
 
-        <p class="text-3xl max-w-3xl mx-auto mb-24">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-        </p>
-
+        <!-- Feature items -->
         <div class="flex flex-nowrap justify-evenly space-x-3">
             <LandingFeature icon="dashboard" label="Dashboard">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</LandingFeature>
             <LandingFeature icon="flag" label="Reports">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</LandingFeature>
@@ -47,11 +41,11 @@
     </Content>
 
     <!-- Products -->
-    <Divider darker flip large tall/>
-    <Content darker class="flex">
+    <Divider shape="triangle" darker flip tall/>
+    <Content darker class="flex space-x-6">
 
         <!-- Hero text -->
-        <div class="grid grid-cols-2 gap-4 items-stretch w-1/2">
+        <div class="grid grid-cols-2 gap-6 items-stretch w-1/2">
             <LandingCard name="Feature" icon="badge" action="Search" to="about">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</LandingCard>
             <LandingCard name="Documentation" icon="picture_as_pdf" action="Read" to="about">Lorem ipsum dolor sit amet, consectetur <strong>adipiscing</strong> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</LandingCard>
             <LandingCard name="On demand" icon="content_cut" action="Read about" to="about">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <strong>tempor</strong> incididunt ut labore et dolore magna aliqua.</LandingCard>
@@ -60,18 +54,15 @@
 
         <!-- Left content -->
         <div class="w-1/2 text-right">
-            <Title class="mb-6" large brand>What are we capable of ?</Title>
-            <p class="text-lg font-light max-w-md ml-auto mb-9">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                <br/><br/>
-                Ut enim ad minim veniam, <strong>quis nostrud exercitation</strong> ullamco laboris nisi
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                <br/><br/>
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <strong>quis nostrud exercitation</strong> incididunt ut labore et dolore magna aliqua.
-                <br/><br/>
-                Ut enim ad minim veniam, <strong>sit amet</strong> exercitation ullamco laboris nisi
-            </p>
+            <Title h3 class="mb-6" large brand>What are we capable of ?</Title>
+            <Text large class="ml-auto mb-9" brand :md="
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'+
+                'Ut enim ad minim veniam, **quis nostrud exercitation** ullamco laboris nisi'+ '\n\n'+
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'+
+                'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi'+ '\n\n'+
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do **quis nostrud exercitation** incididunt ut labore et dolore magna aliqua.'+
+                'Ut enim ad minim veniam, **sit amet** exercitation ullamco laboris nisi'
+            "/>
             <Button large label="Search" brand icon="search"/>
         </div>
     </Content>
@@ -84,34 +75,28 @@
         <Title display class="!text-base-600 select-none">Microsoft</Title>
     </Content>
 
+    <!-- Annotations -->
     <Divider flip darker/>
-    <section class="py-24 bg-base-600 text-on-base-500">
-        <div class="container mx-auto flex items-top justify-evenly">
+    <Content darker class="flex justify-between">
 
-            <!-- Info title and text -->
-            <div>
-                <Title class="mb-3" brand>Features</Title>
-                <p class="text-2xl font-bold max-w-xs"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. </p>
-            </div>
-
-            <div class="flex items-top space-x-8">
-                <Icon class="shadow-xl text-5xl text-base-500 flex items-center justify-center rounded-full w-16 h-16 bg-gradient-to-r from-brand-400 to-brand-600" name="star"></Icon>
-                <div>
-                    <h4 class="text-2xl font-bold mb-3">Built for impact</h4>
-                    <p class="max-w-xs mx-auto text-base text-opacity-75 text-on-base-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor, consectetur adipiscing elit, sed do eiusmod tempor, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                </div>
-            </div>
-
-            <div class="flex items-top space-x-8">
-                <Icon class="shadow-xl text-5xl text-base-500 flex items-center justify-center rounded-full w-16 h-16 bg-gradient-to-r from-brand-400 to-brand-600" name="sync"></Icon>
-                <div>
-                    <h4 class="text-2xl font-bold mb-3">In sync with you</h4>
-                    <p class="max-w-xs mx-auto text-base text-opacity-75 text-on-base-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor, consectetur adipiscing elit, sed do eiusmod tempor, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                </div>
-            </div>
+        <!-- Info title and text -->
+        <div class>
+            <Title h3 class="mb-3" brand>tldr;</Title>
+            <Text display class="!max-w-xs">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
         </div>
 
-    </section>
+        <LandingAnnotation label="Build for impact" icon="star">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor,
+            consectetur adipiscing elit, sed do eiusmod tempor, consectetur adipiscing elit,
+            sed do eiusmod tempor
+        </LandingAnnotation>
+
+        <LandingAnnotation label="In sync with you" icon="sync">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor,
+            consectetur adipiscing elit, sed do eiusmod tempor, consectetur adipiscing elit,
+            sed do eiusmod tempor
+        </LandingAnnotation>
+    </Content>
 
 </main>
 </template>
