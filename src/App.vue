@@ -1,27 +1,42 @@
-<script setup lang="ts">
+<script lang="ts">
+import { defineComponent, ref } from "vue";
+
+export default defineComponent({
+    setup(props, {attrs, emit}){
+        const navHeight = ref(1)
+        return { navHeight }
+    }
+})
 </script>
 
 <template>
-<div class="bg-base min-h-screen">
+<div class="h-min-screen">
 
     <!-- Header -->
-    <nav class="flex items-center bg-base text-on-base w-screen">
-        <div class="flex items-center container mx-auto space-x-12 border-b-on-base border-b py-8">
-
-            <h1 class="font-thin block text-lg border-b-red-500 align-middle"><strong class="font-bold">HSJM.io</strong> Boilerplate</h1>
-            <div class="flex-grow"></div>
-
-            <Button>Accueil</Button>
-            <Button>Contact</Button>
-            <Button>Nos valeurs</Button>
-
-
-        </div>
-    </nav>
+    <NavBase 
+        v-model:height="navHeight">
+    </NavBase>
 
     <!-- Page content -->
-    <RouterView class="text-on-base"/>
-
+    <RouterView :style="{paddingTop:navHeight+'px'}">
+    </RouterView>
     
 </div>
 </template>
+
+<style lang="postcss">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html{@apply
+    bg-base-500
+    overflow-x-hidden
+    overflow-y-scroll
+}
+
+body{@apply
+    overflow-x-hidden
+    overflow-y-visible
+}
+</style>
