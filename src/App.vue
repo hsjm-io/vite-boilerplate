@@ -13,13 +13,10 @@ export default defineComponent({
 <div class="h-min-screen">
 
     <!-- Header -->
-    <NavBase 
-        v-model:height="navHeight">
-    </NavBase>
+    <NavBase v-model:height="navHeight"/>
 
     <!-- Page content -->
-    <RouterView :style="{paddingTop:navHeight+'px'}">
-    </RouterView>
+    <RouterView :style="{paddingTop:navHeight+'px'}"/>
     
 </div>
 </template>
