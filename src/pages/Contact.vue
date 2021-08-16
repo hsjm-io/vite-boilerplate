@@ -1,12 +1,13 @@
 
 <template>
 <main>
-    <section>
+    <Content>
 
-        <h3 class="inline text-3xl mb-6 font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-brand-600">
-            text
-        </h3>
+        <Title class="mb-3" center display brand>Contact us !</Title>
+        <Text center large>If you have any question or remarks? Just write use a message, we'll make sure to answer !</Text>
 
-    </section>
+        
+
+    </Content>
 </main>
 </template>
