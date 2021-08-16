@@ -7,7 +7,7 @@ export default {
     setup: ButtonBase.setup,
     
     //--- Extend props.
-    props: { 
+    props: {
 
         //--- Template
         icon: String,
@@ -56,7 +56,6 @@ export default {
         font-bold
         transition-all
         ease-out
-        shadow-md
 
         select-none
         cursor-pointer
@@ -65,33 +64,27 @@ export default {
 
     /* --- Base variant */
     &:not(.outlined){
-
-        /* --- Colors */
         &:not(.brand,.contrast){@apply text-on-base-500 bg-gradient-to-br from-base-600 to-base-700;}
         &.brand{@apply text-base-500 bg-gradient-to-br from-brand-400 to-brand-600; }
         &.contrast{@apply text-base-500 bg-gradient-to-br from-contrast-400 to-contrast-600; }
-
-        /* --- States */
-        &.active,
-        &:hover{@apply shadow-lg transform scale-110;}
-        &:active{@apply shadow-md transform scale-105;}
-        &.disabled{@apply filter grayscale opacity-50 pointer-events-none;}
     }
 
     /* --- Outlined variant */
     &.outlined{
-
-        /* --- Colors */
         &:not(.brand,.contrast){@apply text-on-base-500 border border-on-base-500;}
         &.brand{@apply text-brand-500  border border-brand-500; }
         &.contrast{@apply text-contrast-500  border border-contrast-500; }
-
-        /* --- States */
-        &.active,
-        &:hover{@apply shadow-lg transform scale-110;}
-        &:active{@apply shadow-md transform scale-105;}
-        &.disabled{@apply filter grayscale opacity-50 pointer-events-none;}
     }
+    
+    /* --- States */
+    @apply shadow-lg;
+    &.active,
+    &:hover{@apply shadow-xl transform -translate-y-0.5;}
+    &:active{@apply shadow-lg transform -translate-y-0;}
+    
+    /* --- Disabled & Readonly */
+    &.readonly{@apply filter pointer-events-none;}
+    &.disabled{@apply filter grayscale opacity-75 pointer-events-none;}
 
     /* --- Shape */
     &:not(.square){@apply rounded-full;}
