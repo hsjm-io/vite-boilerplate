@@ -4,7 +4,6 @@
 import { computed, defineComponent } from 'vue'
 import { useVModel } from '@vueuse/core'
 import { 
-    useTag, useTagProps,
     useDisabled, useDisabledProps,
     useRouting, useRoutingProps,
     useLoading, useLoadingProps,
@@ -16,12 +15,12 @@ export default defineComponent({
     props: {
 
         //--- Component props.
+        tag: {type: String, default: 'button'},
         label: String,
         modelValue: Boolean,
         toggle: Boolean,
 
         //--- Useables props.
-        ...useTagProps,
         ...useDisabledProps,
         ...useRoutingProps,
         ...useLoadingProps,
@@ -32,12 +31,12 @@ export default defineComponent({
 
     setup(props, {attrs, emit}){
 
-        //--- Add two-way value state.
+        //--- Init reactive properties.
         const modelValue = useVModel(props, 'modelValue', null, {passive: true})
         const { classes: classesDisabled, attributes: attributesDisabled } = useDisabled(props)
         const { classes: classesRouting, href, isLink, navigate } = useRouting(props)
         const { classes: classesLoading, loading } = useLoading(props)
-        const { tag } = useTag(props, isLink ? 'a' : 'button')
+        const tag = computed(() => isLink ? 'a' : props.tag)
 
         //--- Compute CSS classes.
         const classes = computed(() => ({
