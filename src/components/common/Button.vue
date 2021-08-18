@@ -72,7 +72,7 @@ export default {
     /* --- Outlined variant */
     &.outlined{
         &:not(.brand,.contrast){@apply text-on-base-500 border border-on-base-500;}
-        &.brand{@apply text-brand-500  border border-brand-500; }
+        &.brand{@apply text-brand-500 bg-base-500  border border-brand-500; }
         &.contrast{@apply text-contrast-500  border border-contrast-500; }
     }
     
