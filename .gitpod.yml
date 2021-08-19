@@ -13,3 +13,4 @@ vscode:
     - octref.vetur
     - csstools.postcss
     - bradlc.vscode-tailwindcss
+    - vtrois.gitmoji-vscode
