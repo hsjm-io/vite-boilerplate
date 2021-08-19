@@ -76,6 +76,7 @@ export default defineComponent({
 
     /* --- Colors */
     &.secondary{@apply opacity-75}
+    &:not(.brand,.contrast){@apply text-on-base-500}
     &.brand strong{@apply text-transparent bg-clip-text bg-gradient-to-br from-brand-400 to-brand-600}
     &.contrast strong{@apply text-transparent bg-clip-text bg-gradient-to-br from-contrast-400 to-contrast-600}
 }
