@@ -1,20 +1,25 @@
 <script lang="ts">
-import ButtonBase from './base/BaseButton.vue'
+import ButtonBase from './base/BaseButton'
 export default { 
+    
     extends: ButtonBase,
     setup: ButtonBase.setup,
-    props: { icon: String }
+    
+    props: { 
+        label: String,
+        icon: String
+     }
 }
 </script>
 
 <template>
-    <component class="nav-item" :is="tag" v-bind="attributes">
+    <component :is="tag" class="nav-item" v-bind="attributes">
 
         <!-- Prepend Icon -->
-        <Icon v-if="icon" class="mr-3" :name="icon"></Icon>
+        <Icon v-if="icon" left :name="icon"/>
 
-        <!-- Text -->
-        <slot>{{label}}</slot>
+        <!-- Button default content. -->
+        <slot><span>{{label}}</span></slot>
 
     </component>
 </template>

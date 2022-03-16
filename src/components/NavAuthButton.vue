@@ -1,24 +1,26 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
-import ButtonBase from './base/BaseButton.vue'
-export default defineComponent({
-    extends: ButtonBase,
-    setup: ButtonBase.setup,
+import BaseButton from './base/BaseButton'
+export default {
+
+    extends: BaseButton,
+    setup: BaseButton.setup,
+
     props: {
+        label: String,
         icon: String,
         inverted: Boolean,
     }
-})
+}
 </script>
 
 <template>
-    <component class="nav-auth-button" :class="{inverted}" :is="tag" v-bind="attributes">
+    <component :is="tag" class="nav-auth-button" :class="{inverted}" v-bind="attributes">
         
         <!-- Prepend Icon -->
-        <Icon v-if="icon" class="mr-2" :name="icon"></Icon>
+        <Icon v-if="icon" left :name="icon"/>
 
-        <!-- Text -->
-        <span><slot>{{label}}</slot></span>
+        <!-- Button default content. -->
+        <slot><span>{{label}}</span></slot>
 
     </component>
 </template>

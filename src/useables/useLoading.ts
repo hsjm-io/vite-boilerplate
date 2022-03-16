@@ -1,12 +1,13 @@
-import type { WritableComputedRef } from 'vue'
-import { computed } from 'vue'
+import { computed, defineComponent, WritableComputedRef } from 'vue'
 import { useVModel } from '@vueuse/core'
 
+//--- Props definition.
 export const useLoadingProps = {
     loading: Boolean,
     loadingClass: { type: String, default: 'loading' },
 }
 
+//--- Setup composition.
 export const useLoading = (props) => {
 
     //--- Define reactive variables.
@@ -19,5 +20,13 @@ export const useLoading = (props) => {
 
     //--- Return reactive properties.
     return { loading, classes }
-
 }
+
+//--- Mixin definition.
+export const loadable = defineComponent({
+    props: useLoadingProps,
+    setup: props => {
+        const {loading, classes: classesLoading} = useLoading(props)
+        return {loading, classesLoading}
+    }
+})

@@ -29,7 +29,9 @@ module.exports = {
 
             //--- Set brand font family.
             fontFamily: {
-                sans: ['Poppins', 'ui-sans-serif']
+                sans: ["'Poppins'", 'ui-sans-serif'],
+                mdi: ["'Material Icons'"],
+                fa5: ["'Font Awesome'"]
             },
 
             //--- Define main theme color.

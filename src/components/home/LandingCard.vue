@@ -10,10 +10,10 @@ export default {
 </script>
 
 <template>
-<Card outlined brand>
+<Card brand>
     <Icon class="mb-6" display brand>{{icon}}</Icon>
     <Title class="mb-0" small brand>{{name}}</Title>
     <Text class="mb-6" small><slot/></Text>
-    <Button brand outlined :label="action" icon-right="chevron_right" :to="to"/>
+    <Button brand outlined small :label="action" icon-right="chevron_right" :to="to"/>
 </Card>
 </template>

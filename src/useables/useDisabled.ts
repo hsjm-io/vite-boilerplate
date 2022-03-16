@@ -1,5 +1,5 @@
 //--- Import dependencies.
-import { computed } from 'vue'
+import { computed, defineComponent } from 'vue'
 
 //--- Define and expose `props` object.
 export const useDisabledProps = {

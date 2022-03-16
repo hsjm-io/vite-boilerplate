@@ -1,4 +1,3 @@
-<script lang="ts">
 import { defineComponent, ref, watch } from "vue"
 import { useWindowScroll, useElementSize } from '@vueuse/core'
 
@@ -28,10 +27,3 @@ export default defineComponent({
         return { root, scroll, height, width }
     }
 })
-</script>
-
-<template>
-<nav ref="root">
-    <slot></slot>
-</nav>
-</template>

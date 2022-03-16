@@ -1,9 +1,7 @@
-<script lang="ts">
-
 //--- Import dependencies.
 import { computed, defineComponent } from 'vue'
 import { useVModel } from '@vueuse/core'
-import { 
+import {
     useDisabled, useDisabledProps,
     useRouting, useRoutingProps,
     useLoading, useLoadingProps,
@@ -16,7 +14,6 @@ export default defineComponent({
 
         //--- Component props.
         tag: {type: String, default: 'button'},
-        label: String,
         modelValue: Boolean,
         toggle: Boolean,
 
@@ -34,23 +31,16 @@ export default defineComponent({
         //--- Init reactive properties.
         const modelValue = useVModel(props, 'modelValue', null, {passive: true})
         const { classes: classesDisabled, attributes: attributesDisabled } = useDisabled(props)
-        const { classes: classesRouting, href, isLink, navigate } = useRouting(props)
+        const { classes: classesRouting, href, isLink, isExternalLink, navigate } = useRouting(props)
         const { classes: classesLoading, loading } = useLoading(props)
-        const tag = computed(() => isLink ? 'a' : props.tag)
-
-        //--- Compute CSS classes.
-        const classes = computed(() => ({
-            'active': modelValue.value,
-            ...classesDisabled.value,
-            ...classesRouting.value,
-            ...classesLoading.value,
-        }))
+        const tag = computed(() => isLink.value ? 'a' : props.tag ?? 'button')
 
         //--- Compute async functions.
         const onClick = async (e: Event) => {
 
             //--- Avoid native navigation.
-            e.preventDefault()
+            // if(isExternalLink.value)
+                e.preventDefault()
 
             //--- Avoid any interation when `disabled`.
             if(props.disabled || props.readonly) return
@@ -65,45 +55,26 @@ export default defineComponent({
             navigate()
         }
 
+        //--- Compute CSS classes.
+        const classes = computed(() => ({
+            'active': modelValue.value,
+            ...classesDisabled.value,
+            ...classesRouting.value,
+            ...classesLoading.value,
+        }))
+
         const attributes = computed(() => ({
 
             href: href.value,
             class: classes.value,
             onClick: onClick,
 
-            'role': 'button',
-            'aria-labelledby': props.label,
+            'role': props.onClick ? 'button' : undefined,
 
             ...attributesDisabled.value,
         }))
 
-        return {
-            tag: tag,
-            label: props.label,
-            loading: loading,
-            attributes: attributes,
-        }
+        return { tag, loading, attributes, isExternalLink }
     }
 
 })
-
-</script>
-
-<template>
-
-    <!-- Dynamic HTML component -->
-    <component :is="tag" v-bind="attributes">
-
-        <!-- When button is in the `loading` state -->
-        <slot name="loading" v-if="loading"/>
-
-        <!-- Prepend element before label, like an icon -->
-        <slot name="prepend"/>
-
-        <!-- Button default content, defaults to `label`. -->
-        <slot>{{label}}</slot>
-        
-        <!-- Append element before label, like an icon -->
-        <slot name="append"/>
-    </component>
-</template>

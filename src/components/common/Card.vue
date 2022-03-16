@@ -1,46 +1,53 @@
 <script lang="ts">
-export default {
-    props: {
+import ButtonBase from '../base/BaseButton'
+export default { 
 
-        //--- Variants
-        outlined: Boolean,
+    //--- From `ButtonBase`
+    extends: ButtonBase,
+    setup: ButtonBase.setup,
+
+    props: {
+        
+        tag: {type: String, default: 'div'},
+
+        //--- Sizes
+        large: Boolean,
+        small: Boolean, 
 
         //--- Color
         brand: Boolean,
         contrast: Boolean,
+        darker: Boolean,
 
     }
 }
 </script>
 
 <template>
-<div class="card" :class="{outlined, brand, contrast}">
-    <slot/>
-</div>
+
+    <!-- Dynamic HTML component -->
+    <component :is="tag" class="card" :class="{brand, contrast, darker, small, large}" v-bind="attributes">
+
+        <!-- Content -->
+        <slot/>
+        
+    </component>
 </template>
 
 <style lang="postcss">
-.card{@apply
-    flex flex-col
-    items-start
-    w-full
-    p-6
-    rounded-xl;
-
-    &:not(.outlined){
-        @apply shadow-xl;
-        &:not(.brand,.contrast){@apply bg-base-500 }
-        &.brand{@apply bg-brand-500 text-on-brand-500}
-        &.contrast{@apply bg-contrast-500 text-on-brand-500}
-    }
-
-    &.outlined{
-        &:not(.brand,.contrast){@apply border-on-base-500 border-2}
-        &.brand{@apply border-brand-500 border-2}
-        &.contrast{@apply border-contrast-500 border-2}
-    }
-
+.card{
     
-    
+    @apply transition shadow-none hover:shadow-xl;
+
+    /* --- Sizes */
+    @apply p-6 rounded-xl;
+    &.large{@apply p-12 rounded-3xl}
+    &.small{@apply p-3 rounded-lg}
+
+    /* --- Variants */
+    &:not(.brand,.contrast,.darker){@apply bg-base-500 text-on-base-500}
+    &.brand{@apply border-brand-500 border-2}
+    &.contrast{@apply border-contrast-500 border-2}
+    &.darker{@apply bg-base-600 text-on-base-500}    
 }
 </style>

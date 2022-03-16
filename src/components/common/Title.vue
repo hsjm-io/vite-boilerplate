@@ -6,7 +6,6 @@ export default defineComponent({
         //--- Template
         h1: Boolean,
         h2: Boolean,
-        h3: Boolean,
         label: String,
 
         //--- Alignment
@@ -24,11 +23,9 @@ export default defineComponent({
 
     setup(props){
 
-
         const tag = computed(() =>  
             props.h1 ? 'h1' :
-            props.h2 ? 'h2' :
-            props.h3 ? 'h3' : 'h3'
+            props.h2 ? 'h2' : 'h3'
         )
 
         return { tag }
@@ -46,7 +43,7 @@ export default defineComponent({
 .title {
     
     /* --- Defaults */
-    @apply md:text-3xl text-2xl max-w-3xl font-bold;
+    @apply md:text-3xl text-2xl max-w-3xl font-bold overflow-visible;
     &>strong{@apply md:text-4xl text-3xl font-bold}
 
     /* --- Sizes */

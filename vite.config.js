@@ -63,7 +63,10 @@ export default defineConfig({
                 require('tailwindcss')(),
                 require('postcss-nested-ancestors'),
                 require('postcss-nested'),
-                require('postcss-font-magician')({ foundries: 'google' }),
+                require('postcss-font-magician')({
+                    foundries: 'google',
+                    hosted: ['@fontawesome/fontawesome-free/webfonts']
+                }),
                 require('postcss-preset-env'),
             ]
         }

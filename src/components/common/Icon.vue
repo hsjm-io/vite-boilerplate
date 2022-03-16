@@ -38,7 +38,7 @@ export default {
 .icon {
     
     /* Recommended fonts.google.com style */
-    font-family: 'Material Icons';
+    @apply font-mdi;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -61,8 +61,8 @@ export default {
     font-feature-settings: 'liga';
 
     /* --- Spacing */
-    &.left{@apply mr-3;}
-    &.right{@apply ml-3;}
+    &.left{@apply mr-2;}
+    &.right{@apply ml-2;}
 
     /* --- Variants & Colors */
     &.fab{
@@ -77,7 +77,7 @@ export default {
     }
 
     /* --- Sizes */
-    &.display{@apply text-8xl;}
+    &.display{@apply text-8xl}
     &.large{@apply text-5xl}
     &.small{@apply text-sm}
 }

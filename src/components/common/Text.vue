@@ -1,6 +1,6 @@
 <script>
 import Markdown from 'markdown-it'
-import { computed, ref, watch, defineComponent } from 'vue'
+import { computed, getCurrentInstance, onMounted , defineComponent } from 'vue'
 export default defineComponent({
 
     inheritAttrs: false,
@@ -11,8 +11,8 @@ export default defineComponent({
         span: Boolean,
 
         //--- Template
-        html: String,
         md: String,
+        html: String,
 
         //--- Alignment
         center: Boolean,
@@ -28,34 +28,43 @@ export default defineComponent({
         secondary: Boolean,
     },
 
-    setup(props, {attrs, emit}){
+    setup(props, {attrs, emit, slots}){
+
+        //--- Compute tag
         const tag = computed(() =>  
             props.div ? 'div' :
             props.span ? 'span' : 'p'
         )
 
-        const toMd = md => new Markdown().render(md)
+        const compiledHtml = computed(() => {
+            if(props.md) return new Markdown().render(props.md)
+            if(props.html) return props.html
+            return false
+        })
 
-        return { tag, toMd }
+        const classes = computed(() => ({
+            text: true,
+            brand: props.brand,
+            contrast: props.contrast,
+            secondary: props.secondary,
+            display: props.display,
+            large: props.large,
+            small: props.small,
+            center: props.center,
+        }))
+
+        return { tag, compiledHtml, classes }
     }
 })
 </script>
 
 <template>
-    
-    <!-- Provide parsed HTML from props. -->
-    <component :is="tag" class="text" :class="{brand, contrast, secondary, display, large, small, center}"
-        v-bind="$attrs" v-if="md" v-html="toMd(md)"/>
 
-    <!-- Provide parsed HTML from props. -->
-    <component :is="tag" class="text" :class="{brand, contrast, secondary, display, large, small, center}"
-        v-bind="$attrs" v-else-if="html" v-html="html"/>
-    
-    <!-- Provide slot content. -->
-    <component :is="tag" class="text" :class="{brand, contrast, secondary, display, large, small, center}"
-        v-bind="$attrs">
-        <slot/>
-    </component>
+    <!-- Render HTML -->
+    <div v-if="compiledHtml" v-html="compiledHtml" :class="classes" v-bind="$attrs"/>
+
+    <!-- Render slot content. -->
+    <component v-else :is="tag" :class="classes" v-bind="$attrs"><slot/></component>
 
 </template>
 

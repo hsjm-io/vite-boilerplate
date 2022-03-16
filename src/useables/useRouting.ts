@@ -21,7 +21,7 @@ export const useRouting = (props) => {
     let isExactActive = ref(false)
     let href = computed(() => props.to)
     let isLink = computed(() => !!props.to)
-    let isExternalLink = computed(() => isLink.value && typeof props.to === 'string' && props.to?.startsWith('http'))
+    let isExternalLink = computed(() => isLink.value && typeof props.to === 'string' && !props.to?.startsWith('/'))
     let isInternalLink = computed(() => isLink.value && !isExternalLink.value)
 
     //--- Overwrite state when the button is an internal link.
@@ -49,10 +49,10 @@ export const useRouting = (props) => {
     //--- Return reactive properties.
     return { 
         href, 
-        isActive, 
-        isExactActive, 
         navigate, 
         classes,
+        isActive, 
+        isExactActive, 
         isLink,
         isExternalLink,
         isInternalLink,

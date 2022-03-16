@@ -24,12 +24,12 @@ export default defineComponent({
         if(props.height) watch(height, height => emit('update:height', height), {immediate: true})
 
         const classes = computed(() => ({
-            'shadow-lg': scroll.value > 0 && route.path === '/',
-            'bg-opacity-0': scroll.value === 0 || route.path !== '/',
+            'shadow-lg': scroll.value > 0 || route.path !== '/',
+            'bg-opacity-0': scroll.value === 0 && route.path === '/',
         }))
 
         const classesInner = computed(() => ({
-            'border-b-transparent': scroll.value > 0 && route.path === '/',
+            'border-b border-b-white': scroll.value === 0 && route.path === '/',
         }))
         
         return {
@@ -49,7 +49,7 @@ export default defineComponent({
         class="fixed w-full z-50 bg-base-500 top-0 items-center text-on-base-500 transition">
 
         <div :class="classesInner"
-            class="flex items-center container mx-auto space-x-8 py-12 border-b">
+            class="flex items-center container mx-auto space-x-8 py-12">
             <h1 class="block border-b-red-500 align-middle">
                 <span class="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-400 to-brand-600">HSJM.io</span>
                 <span class="text-xl font-thin"> Boilerplate</span>

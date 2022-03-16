@@ -11,9 +11,9 @@ export default defineComponent({
                 'waves',
                 'waves-opacity',
                 'curve',
-                'curve-asymetrical',
+                'curve-asymetric',
                 'triangle',
-                'triangle-asymetrical',
+                'triangle-asymetric',
                 'tilt',
                 'arrow',
                 'split',
@@ -54,14 +54,14 @@ export default defineComponent({
             <!-- Curve -->
             <path v-else-if="shape === 'curve'" d="M600,112.77C268.63,112.77,0,65.52,0,7.23V120H1200V7.23C1200,65.52,931.37,112.77,600,112.77Z"/>
     
-            <!-- Curve Asymetrical -->
-            <path v-else-if="shape === 'curve-asymetrical'" d="M741,116.23C291,117.43,0,27.57,0,6V120H1200V6C1200,27.93,1186.4,119.83,741,116.23Z"/>
+            <!-- Curve asymetric -->
+            <path v-else-if="shape === 'curve-asymetric'" d="M741,116.23C291,117.43,0,27.57,0,6V120H1200V6C1200,27.93,1186.4,119.83,741,116.23Z"/>
             
             <!-- Triangle -->
             <path v-else-if="shape === 'triangle'" d="M598.97 114.72L0 0 0 120 1200 120 1200 0 598.97 114.72z"/>
             
-            <!-- Triangle Asymetrical -->
-            <path v-else-if="shape === 'triangle-asymetrical'" d="M892.25 114.72L0 0 0 120 1200 120 1200 0 892.25 114.72z"/>
+            <!-- Triangle asymetric -->
+            <path v-else-if="shape === 'triangle-asymetric'" d="M892.25 114.72L0 0 0 120 1200 120 1200 0 892.25 114.72z"/>
     
             <!-- Tilt -->
             <path v-else-if="shape === 'tilt'" class="flip" d="M1200 120L0 16.48 0 0 1200 0 1200 120z"/>
@@ -103,5 +103,4 @@ export default defineComponent({
     @apply bg-transparent fill-current text-base-500;
     &.darker{@apply text-base-600}
 }
-
 </style>

@@ -34,6 +34,7 @@ export default defineComponent({
 
     /* --- Alignment */
     &.center{@apply text-center items-center}
+    &.center > div{@apply text-center items-center}
 
     /* --- Colors */
     &:not(.darker,.brand,.contrast,.transparent){@apply bg-base-500 text-on-base-500}
